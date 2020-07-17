@@ -1,0 +1,71 @@
+<div class="row px-5 inner-main">
+    <div class="col-md-6">
+        <p>
+            <strong>Name:</strong>
+            <span id="current-user">{{this.currentUser.name}}</span>
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <span id="current-user">{{this.currentUser.email}}</span>
+        </p>
+        <div>
+            <h5>Uploaded Files:</h5>
+            <div class="files-list" *ngFor="let files of listFiles; let i = index">
+                <div class="d-flex h-100">
+                    <div class="row justify-content-center align-self-center col-md-4" [class.fullscreen]="viewed[i]">
+                        <img src="{{addr}}/{{files}}" type="image/jpeg" alt="" class="uploaded-item" *ngIf="files.includes('.jp')"
+                        (click)="viewed[i] = !viewed[i]">
+                        <video class="video-fluid z-depth-1" class="uploaded-item" *ngIf="files.includes('.mp')" [attr.controls]="viewed[i]"
+                        [attr.autoplay]="viewed[i]" [attr.muted]="viewed[i]" (click)="viewed[i] = !viewed[i]">
+                            <source src="{{addr}}/{{files}}" type="video/mp4" autostart="false"/>
+                        </video>
+                    </div>
+                    <div class="row align-self-center col-md-8 text-truncate text-nowrap">
+                        <div class="text-truncate text-nowrap">{{files}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="fileUploadWrapper">
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col-md-12" *ngIf="progress">
+                        <div class="progress form-group">
+                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                [style.width.%]="progress">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                            (fileDropped)="upload($event)">
+                            <span class="ddinfo">Choose an .mp4 or a .jpg file <br />or drag here</span>
+                            <input type="file" accept="video/mp4,image/jpeg" name="avatars" #fileField (change)="upload($event.target.files)" hidden multiple>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-12">
+                        <div class="files-list" *ngFor="let file of fileArr; let i = index">
+                            <div class="d-flex h-100">
+                                <div class="row justify-content-center align-self-center col-md-4">
+                                    <img [src]="sanitize(file['url'])" type="image/jpeg" alt="" class="uploaded-item" *ngIf="file.item.name.includes('.jp')">
+                                    <video class="video-fluid z-depth-1" class="uploaded-item" *ngIf="file.item.name.includes('.mp')">
+                                        <source [src]="sanitize(file['url'])" type="video/mp4" />
+                                    </video>
+                                </div>
+                                <div class="row align-self-center col-md-8">
+                                    <div >{{file.item.name}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="message" *ngIf="!errMsg">{{msg}}</p>
+                        <p class="message text-danger" *ngIf="errMsg">{{errMsg}}</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

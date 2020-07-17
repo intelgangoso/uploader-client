@@ -1,0 +1,101 @@
+html,
+body,
+.auth-wrapper {
+  height: 100%;
+}
+.auth-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+label {
+  font-weight: 500;
+}
+.container {
+  max-width: 600px;
+}
+.inner-main {
+  padding-top: 130px;
+  width: 100%;
+}
+.uploaded-item {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.fileupload {
+    background-color: #ffffff;
+    height: 200px;
+    width: 100%;
+    cursor: pointer;
+    border: 2px dashed #8a8a8a;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.ddinfo {
+    display: block;
+    text-align: center;
+    padding-top: 90px;
+    color: #a0a1a2;
+}
+
+.files-list {
+    width: 100%;
+    background: #eee;
+    border: 1px solid #8a8a8a;
+    border-radius: 3px;
+    padding: 10px 10px 10px 15px;
+    margin-bottom: 10px;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    max-width: 100% !important;
+    background: #000;
+}   
+
+.fullscreen > img,
+.fullscreen > video {
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+
+@media screen and (max-width: 767px) {
+  .inner-main > .col-md-6:first-child {
+      order: 2;    
+  }
+  .inner-main > .col-md-6:last-child {
+    order: 1;
+  }
+}
